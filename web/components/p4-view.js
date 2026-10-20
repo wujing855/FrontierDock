@@ -1,4 +1,4 @@
-/* 轻量工作台的纯数据规则与局部绘制，不包含网络或持久化副作用。 */
+/* 轻量观察站的纯数据规则与局部绘制，不包含网络或持久化副作用。 */
 export function readingSubset(items,{q='',state='all'}={}){
  const needle=q.trim().toLocaleLowerCase();
  return items.filter(({metadata:m,reading:r})=>(state==='all'||r.status===state||r.history_conflict)&&(!needle||[m.title,m.translated_title,(m.authors||[]).map(a=>typeof a==='string'?a:a?.name||'').join(' '),m.doi].join(' ').toLocaleLowerCase().includes(needle)));

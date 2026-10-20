@@ -157,7 +157,7 @@
 .p4-issue-card strong{font-size:18px}.p4-issue-card small{line-height:1.6}.card-latest strong{white-space:normal;line-height:1.65}
 @media(max-width:600px){.p4-issue-grid{grid-template-columns:1fr}}
 
-/* 数据页：沿用工作台纸色、深绿与细线。图表用直接标签保留可读数值。 */
+/* 数据页：沿用观察站纸色、深绿与细线。图表用直接标签保留可读数值。 */
 .p4-analytics{max-width:1320px}.p4-stat-eyebrow{font-size:11px!important;letter-spacing:.19em;color:var(--muted);margin:0 0 12px!important}.p4-analytics .page-head{align-items:end;gap:24px}.p4-analytics .page-head h1{margin-bottom:12px}
 .p4-stat-filters{display:flex;gap:12px;flex-shrink:0}.p4-stat-filters label{display:grid;gap:7px;font-size:12px;color:var(--muted)}.p4-stat-filters select{min-height:44px;min-width:120px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);padding:8px 12px;font:inherit;font-size:14px}
 .p4-stat-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:28px 0 32px;padding:24px 0}.p4-stat-metric{padding:0 24px;border-right:1px solid var(--line);display:grid;gap:8px}.p4-stat-metric:first-child{padding-left:0}.p4-stat-metric:last-child{border:0}.p4-stat-metric>span{font-size:14px;color:var(--muted)}.p4-stat-metric strong{font-size:38px;line-height:1.2;font-weight:500;font-variant-numeric:tabular-nums;letter-spacing:-.03em}.p4-stat-metric small{font-size:12px;color:var(--muted);line-height:1.7}

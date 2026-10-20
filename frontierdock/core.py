@@ -1,4 +1,4 @@
-"""独立工作区、来源记录和字段维护；不读取任何外部工作台。"""
+"""独立工作区、来源记录和字段维护；不读取任何外部观察站。"""
 from pathlib import Path
 from contextlib import contextmanager,closing
 from datetime import datetime,date,timezone
@@ -218,10 +218,13 @@ def demo_corpus(count=400):
   if j in (0,2):
    title=rng.choice([f'A fictional study of {en[0]} and {en[1]} ({n})',f'Notes on {en[0]} in research workflows (fictional {n})',f'Toward {en[0]}: a synthetic record ({n})'])
    abstract=f'Fictional entry {n} on {en[0]}. The abstract is generated from a fixed template so that this demo can show how a stored original abstract, a translation and extracted keywords relate to each other. It describes no real study and must not be cited.'
+   row={'tr':f'这条合成摘要围绕{picked[0]}与{picked[1]}展开，用来演示译文与原摘要的对应关系。内容完全虚构，不对应任何真实研究，不能用于引用。'}
   else:
    title=rng.choice([f'{picked[0]}与{picked[1]}：虚构研究记录 {n}',f'{picked[0]}视角下的{picked[1]}（虚构示例 {n}）',f'关于{picked[0]}的合成实验笔记 {n}'])
    abstract=f'这是第 {n} 条虚构题录，主题围绕{picked[0]}与{picked[1]}。摘要由固定模板生成，用来演示原摘要、译文与关键词之间的关系，不对应任何真实研究，不能用于引用。'
-  rows.append({'j':j,'year':year,'month':month,'volume':year-2023,'issue':issue,'title':title,'abstract':abstract,'keywords':picked})
+   row={}
+  row.update({'j':j,'year':year,'month':month,'volume':year-2023,'issue':issue,'title':title,'abstract':abstract,'keywords':picked})
+  rows.append(row)
  return rows
 
 DEMO_RECORDS=[
@@ -260,7 +263,8 @@ def initialize(path,demo=False):
   for i,d in enumerate(rows):
    if not d.get('abstract'):continue
    value={'record_id':f'demo:{i}','source_hash':hashes[f'demo:{i}'],'model_keywords':d['keywords'],'provider':'synthetic-demo','model':'fictional-example'}
-   if d.get('tr'):value.update(translated_title=d['tt'],abstract_translation=d['tr'])
+   if d.get('tr'):value.update(abstract_translation=d['tr'])
+   if d.get('tt'):value.update(translated_title=d['tt'])
    enrich.append(value)
   w.enrich(enrich)
  return w

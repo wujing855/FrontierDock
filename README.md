@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="docs/images/hero.jpg" width="880" alt="FrontierDock 前沿工作站">
+<img src="docs/images/hero.jpg" width="880" alt="FrontierDock 前沿观察站">
 
-# FrontierDock · 前沿工作站
+# FrontierDock · 前沿观察站
 
 **Build your own research frontier.**
 
@@ -31,7 +31,7 @@ An open-source, self-hosted research intelligence platform.
 把下面这段直接发给你常用的 Agent。能读写本地文件的都会做，不挑平台。
 
 ```text
-帮我装一个本地文献工作台：https://github.com/wujing855/FrontierDock
+帮我装一个前沿观察站（FrontierDock）：https://github.com/wujing855/FrontierDock
 
 请先读仓库里的 skills/frontierdock-setup/SKILL.md，按它的流程陪我配置：
 先问我关注什么领域、平时怎么读文献，给出一批可以跳过、以后能改的选项，装完逐项验证再交给我。
@@ -61,9 +61,9 @@ python3 -m frontierdock init --workspace my-research
 
 截图取自 `--demo` 工作区，期刊、论文、关键词全部虚构。
 
-<img src="docs/images/01-workbench.jpg" width="880" alt="研究工作台：各刊近期论文、我的待读">
+<img src="docs/images/01-workbench.jpg" width="880" alt="前沿观察站：各刊近期论文、我的待读">
 
-**研究工作台**：每本刊先露一篇，右侧是待读清单，点标题直接进摘要页。
+**前沿观察站**：每本刊先露一篇，右侧是待读清单，点标题直接进摘要页。
 
 <img src="docs/images/02-journals.jpg" width="880" alt="期刊浏览：期刊卡片、收录区间、卷期数">
 
@@ -93,7 +93,7 @@ python3 -m frontierdock init --workspace my-research
 
 | 页面 | 内容 |
 |---|---|
-| 研究工作台 | 各刊近期论文一屏聚合，直接加入待读 |
+| 前沿观察站 | 各刊近期论文一屏聚合，直接加入待读 |
 | 期刊浏览 | 期刊卡片、卷期目录、当期题录，收录缺口如实显示 |
 | 论文检索 | 题名、DOI、作者、期刊与日期筛选 |
 | 摘要阅读 | 原摘要、译文、来源链接、提取关键词、阅读主题 |

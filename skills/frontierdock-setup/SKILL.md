@@ -23,7 +23,7 @@ Ask a small group of relevant questions, then make useful progress. Do not overw
 
 Most people using this will not be familiar with schedulers, cron or APIs. After the first successful run, offer a simple routine instead of a technical description: twice a day, at two fixed times, you look for new issues and check that the workbench itself is healthy.
 
-Ask rather than assume, and phrase it in everyday words. For example: "要不要我每天早晚各看一次？早上 9 点看看有没有新一期，晚上 9 点再补一次，顺便查一下工作台有没有出毛病。" Accept whatever they choose, including once a day, weekly, or manual only.
+Ask rather than assume, and phrase it in everyday words. For example: "要不要我每天早晚各看一次？早上 9 点看看有没有新一期，晚上 9 点再补一次，顺便查一下观察站有没有出毛病。" Accept whatever they choose, including once a day, weekly, or manual only.
 
 What one check-up does:
 
