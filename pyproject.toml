@@ -1,0 +1,10 @@
+[project]
+name = "frontierdock"
+version = "0.1.0"
+description = "Self-hosted research intelligence platform"
+requires-python = ">=3.11"
+license = "MIT"
+dependencies = []
+
+# Run from the repository root with python -m frontierdock.
+# This source release does not claim an installed wheel distribution.

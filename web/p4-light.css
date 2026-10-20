@@ -1,0 +1,192 @@
+/* 仅补充轻量摘要与历史状态，沿用P3字体、间距、侧栏和列表。 */
+.p4-record{max-width:1120px}
+.p4-abstract.reader{display:block;min-height:0;margin-top:24px;padding:36px 42px;background:var(--read-paper);color:var(--read-ink);border:1px solid var(--read-line);border-radius:6px}
+.p4-abstract h1{font-size:32px;line-height:1.55;overflow-wrap:anywhere;margin:18px 0}
+.p4-abstract .reader-summary{max-width:78ch;margin-top:32px}
+.p4-abstract .reader-summary p{font:19px/1.95 var(--serif);white-space:pre-wrap;overflow-wrap:anywhere}
+.p4-abstract .muted,.p4-abstract .p4-history{color:var(--read-muted)}
+.p4-abstract a{color:var(--read-accent)}
+.p4-abstract select{background:var(--read-paper);color:var(--read-ink);border-color:var(--read-line)}
+.p4-theme{margin-left:auto;font-size:13px;display:flex;align-items:center;gap:8px}
+.p4-history{margin-top:12px;font-size:13px;line-height:1.8;color:var(--muted)}
+.p4-history summary{cursor:pointer;display:inline-block;color:var(--accent)}
+.p4-history p{font-size:13px!important}
+.p4-abstract .p4-history summary{color:var(--read-accent)}
+.pagination [aria-disabled=true]{opacity:.5;cursor:default}
+.catalog-page .p3-inline-form input{max-width:520px}
+.catalog-page .journal-card .pill{align-self:flex-start;max-width:100%;font-size:12px}
+.catalog-page .journal-card .card-top{align-items:baseline}
+.catalog-page .journal-card .description{margin-top:6px}
+.catalog-page .journal-card{min-height:184px}
+.catalog-page .journal-card-summary{min-height:154px}
+.p4-original{margin-top:12px;font-size:14px;color:var(--muted)}
+.p3-abstract-preview .p4-translation{font:16px/1.85 var(--serif);color:var(--ink)}
+.p4-original summary{cursor:pointer;color:var(--accent)}
+.p4-original p{font-size:16px!important;line-height:1.85;max-width:80ch}
+.p4-original small{display:block;margin-top:10px}
+.p4-abstract .p4-original{color:var(--read-muted)}
+.p4-abstract .p4-original summary{color:var(--read-accent)}
+.p4-remove{color:var(--muted)}.p4-remove:hover{color:var(--error)}
+#toast button{margin-left:14px;padding:4px 8px;border:0;background:transparent;color:inherit;text-decoration:underline;pointer-events:auto}
+
+/* 卡片整面可操作；独立入口位于点击层上方，保持原生键盘语义。 */
+.catalog-page .journal-card{position:relative;transition:border-color 120ms ease,background-color 120ms ease}
+.journal-card-hit{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:inherit;background:transparent;cursor:pointer;padding:0;z-index:1}
+.journal-card-hit:hover{background:transparent}
+.journal-card-hit:focus-visible{outline:2px solid var(--forest);outline-offset:3px}
+.catalog-page .journal-card:has(.journal-card-hit:hover){border-color:#809e88;background:#fafcf8}
+.catalog-page .journal-card.is-expanded{background:#f6f9f2;border-color:#809e88}
+.catalog-page .card-entry{position:relative;z-index:2}
+.catalog-page .journal-row-detail{animation:p4-detail-appear 120ms ease-out}
+@keyframes p4-detail-appear{from{opacity:.3;transform:translateY(-3px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.catalog-page .journal-card{transition:none}.catalog-page .journal-row-detail{animation:none}}
+
+.journal-reading-value{margin-top:16px;padding-left:12px;border-left:2px solid #9db59a}
+.journal-reading-value{font-size:15px;line-height:1.85;color:var(--ink)}
+.schedule-note{display:block;color:var(--muted);font-size:12px;margin-top:3px}
+.journal-facts time{font-variant-numeric:tabular-nums}
+
+.publication-forecast dd{font-weight:500}.publication-forecast .schedule-note{font-weight:400;line-height:1.6}
+
+.journal-detail-meta{display:flex;align-items:center;flex-wrap:wrap;gap:8px 18px;margin-top:8px;font-size:14px;color:var(--muted)}
+.journal-detail-meta a{color:var(--accent)}
+.p4-update-info{font-size:13px;color:var(--muted);margin:-12px 0 20px;display:flex;align-items:center;gap:16px}
+.p4-update-info details{color:var(--error)}.p4-update-info details p{max-width:70ch;line-height:1.7}
+.p4-pending{margin:0 0 22px;border-bottom:1px solid var(--line);padding-bottom:16px}
+.p4-pending summary{cursor:pointer;color:var(--accent)}.p4-pending article{padding:18px 0;border-top:1px solid var(--line);margin-top:12px}
+.p4-pending h3{font:600 18px/1.5 var(--serif)}.p4-pending p{font-size:14px;line-height:1.75;margin:8px 0}
+.p4-pending .p3-actions{flex-wrap:wrap}
+.p3-inline-form:has(input[type=date]){flex-wrap:wrap}.p3-inline-form input[type=date]{width:150px;min-width:0;font-size:14px}
+
+/* 学术阅读精修：深松绿品牌不变，正文和操作分别形成稳定的对齐线。 */
+.ui-polish .page{max-width:1320px;padding:36px 42px 64px}
+.ui-polish .page-head{margin-bottom:26px}
+.ui-polish .page-head h1{font-size:30px;line-height:1.35;letter-spacing:-.025em}
+.ui-polish .catalog-page .filters{padding:0 0 20px;gap:14px}
+.ui-polish .catalog-page .result-info{font-size:14px;margin:0 0 20px}
+.ui-polish .journal-grid{gap:20px}
+.ui-polish .journal-card{padding:20px 24px;background:var(--paper)}
+.ui-polish .journal-card .pill{background:transparent;padding:0;color:var(--muted);font-size:13px}
+.ui-polish .journal-card .card-top{margin-bottom:12px}
+.ui-polish .journal-card h2{font-size:22px;line-height:1.45}
+.ui-polish .journal-card .english-name{font-size:15px;line-height:1.5;margin:3px 0 6px}
+.ui-polish .journal-card .description{font-size:15px;line-height:1.7;margin-bottom:18px}
+.ui-polish .card-entry{font-size:14px;min-height:36px;display:flex;align-items:center}
+.ui-polish .card-latest{font-size:13px;gap:3px}
+.ui-polish .card-latest strong{font-size:14px}
+.ui-polish .journal-row-detail{padding:26px 28px}
+.ui-polish .detail-description{font-size:15px}
+.ui-polish .p4-back{display:inline-block;margin:0 0 18px;font-size:14px}
+.ui-polish .p4-papers .page-head{max-width:860px;margin-bottom:24px}
+.ui-polish .p4-papers .page-head h1{font-family:var(--serif);font-size:30px;line-height:1.45}
+.ui-polish .p4-papers .p3-doc{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px 32px;padding:25px 0;align-items:start}
+.ui-polish .p4-papers .p3-doc h3{font:600 21px/1.55 var(--serif);margin:0 0 7px;max-width:44em}
+.ui-polish .p3-doc h3 a{color:var(--ink);text-decoration:none}
+.ui-polish .p3-doc h3 a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:4px}
+.ui-polish .p4-english-title{font:16px/1.55 Georgia,serif;color:var(--muted);margin:6px 0 10px}
+.ui-polish .p4-paper-meta{font-size:14px;line-height:1.75;margin:7px 0;color:var(--muted)}
+.ui-polish .p3-doc-actions{font-size:14px;gap:16px;flex-wrap:wrap;max-width:240px;padding-top:5px}
+.ui-polish .p3-abstract-preview{margin-top:12px;max-width:76ch}
+.ui-polish .p3-abstract-preview>summary{cursor:pointer;font-size:14px;padding:5px 0;color:var(--accent)}
+.ui-polish .p3-abstract-preview[open]>summary{margin-bottom:12px}
+.ui-polish .p3-abstract-preview p{font-size:17px;line-height:1.9}
+.ui-polish .p4-record.page{max-width:980px;padding-top:28px}
+.ui-polish .p4-abstract.reader{padding:38px 48px 46px;margin-top:20px}
+.ui-polish .p4-abstract h1{font-size:30px;line-height:1.5;margin:20px 0 16px}
+.ui-polish .p4-abstract .reader-summary{max-width:none;margin-top:30px;padding-top:25px;border-top:1px solid var(--read-line)}
+.ui-polish .p4-abstract .reader-summary h2{font:600 16px/1.5 var(--sans);margin-bottom:16px}
+.ui-polish .p4-abstract .reader-summary p{font-size:19px;line-height:1.95}
+.ui-polish .p4-abstract .p3-actions{gap:14px;flex-wrap:wrap;margin-top:24px}
+.ui-polish .p4-theme{font-size:14px}
+.ui-polish .p4-abstract .p4-original{margin-top:24px}
+.ui-polish .p4-original summary{font-size:14px;padding:8px 0}
+.ui-polish :focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+@media(max-width:1280px){.ui-polish .page{padding-left:28px;padding-right:28px}.ui-polish .p4-papers .p3-doc{gap:16px}.ui-polish .p3-doc-actions{max-width:170px}.ui-polish .p4-abstract.reader{padding:32px}}
+@media(max-width:760px){.ui-polish .p4-papers .p3-doc{grid-template-columns:1fr}.ui-polish .p3-doc-actions{max-width:none}.ui-polish .page{padding:24px 18px}.ui-polish .p4-abstract.reader{padding:24px}.ui-polish .p4-theme{margin-left:0}}
+.ui-polish .topbar:has(+main[aria-busy=true]) .top-label::after{content:'读取中…';font-size:13px;font-weight:400;color:var(--muted);margin-left:18px}
+.ui-polish .catalog-page .journal-card{padding-block:16px}
+.ui-polish .journal-card .card-top{margin-bottom:8px}
+.ui-polish .journal-card .description{margin-bottom:12px}
+.ui-polish .p4-abstract .p4-english-title{color:var(--read-muted)}
+
+/* 完整轻量工作流：论文为主，待读为辅，操作沿固定列对齐。 */
+.ui-polish .p4-home-grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(250px,.85fr);gap:44px;align-items:start}
+.ui-polish .p4-section-head{display:flex;justify-content:space-between;align-items:baseline;gap:18px}
+.ui-polish .p4-section-head h2{font:600 22px/1.45 var(--serif);margin:0}
+.ui-polish .p4-section-head>a,.ui-polish .p4-section-head>span{font-size:14px;white-space:nowrap;color:var(--muted)}
+.ui-polish .p4-section-caption{font-size:14px;color:var(--muted);margin:8px 0 20px}
+.ui-polish .p4-discovery .p3-doc{display:block;position:relative;padding:22px 0}
+.ui-polish .p4-discovery .p3-doc>div:first-child>.p4-paper-meta:last-child{padding-right:115px;min-height:36px;display:flex;align-items:center;margin-bottom:0}
+.ui-polish .p4-discovery .p3-doc:first-child{border-top:1px solid var(--line)}
+.ui-polish .p4-discovery h3{font:600 21px/1.5 var(--serif);margin:7px 0}
+.ui-polish .p4-discovery .p3-doc-actions{position:absolute;right:0;bottom:22px;padding-top:0;max-width:110px;min-height:36px;align-items:center;white-space:nowrap}
+.ui-polish .p4-discovery .p3-doc-actions select{width:90px}
+.ui-polish .p4-saved-label{font-size:14px;color:var(--muted)}
+.ui-polish .p4-home-reading{border-left:1px solid var(--line);padding-left:28px}
+.ui-polish .p4-reading-pick{padding:24px 0;border-bottom:1px solid var(--line)}
+.ui-polish .p4-reading-pick h3{font:600 18px/1.65 var(--serif);margin:0 0 8px}
+.ui-polish .p4-reading-pick h3 a{color:var(--ink);text-decoration:none}
+.ui-polish .p4-reading-pick h3 a:hover{color:var(--accent)}
+.ui-polish .p4-reading-pick p{font-size:14px;line-height:1.75;color:var(--muted);margin:0}
+.ui-polish .p4-home-reading>.text-btn{display:inline-block;margin-top:20px;font-size:14px}
+.ui-polish .p4-library{max-width:1200px}
+.ui-polish .p4-library-filter{display:flex;align-items:center;justify-content:space-between;gap:18px;border-bottom:1px solid var(--line);padding-bottom:20px}
+.ui-polish .p4-library-filter input[type=search]{flex:1;max-width:460px;min-width:180px;font-size:15px}
+.ui-polish .p4-library-filter .segment button{min-height:36px;padding:6px 16px;cursor:pointer;font-size:14px}
+.ui-polish .p4-list-count{color:var(--muted);font-size:14px;margin:0 0 4px}
+.ui-polish .p4-library .p3-doc{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:18px 28px;padding:25px 0}
+.ui-polish .p4-library .p3-doc h3{font:600 21px/1.55 var(--serif)}
+.ui-polish .p4-library .p3-doc p{font-size:14px;line-height:1.8;color:var(--muted);margin:7px 0 0}
+.ui-polish .p4-library .p3-doc-actions{max-width:260px;gap:14px;padding-top:2px;white-space:nowrap}
+.ui-polish .p4-remove{font-size:13px;opacity:.85}
+.ui-polish .p4-library .p3-doc-actions select{font-size:14px;border:1px solid var(--line);background:var(--paper);padding:6px 8px;min-height:34px}
+.ui-polish .p4-search-status{font-size:14px;color:var(--muted);min-height:22px;line-height:22px;margin:-12px 0 10px}
+.ui-polish .p4-library .p4-search-status{margin:10px 0 0}
+.ui-polish .p4-search-status .text-btn{font-size:14px;margin-left:12px}
+.ui-polish .p4-inline-error{font-size:14px;color:var(--error);line-height:1.7}
+.ui-polish .p4-paper-meta,.ui-polish .p4-english-title{overflow-wrap:anywhere}
+@media(max-width:1280px){.ui-polish .p4-home-grid{gap:28px;grid-template-columns:minmax(0,1.8fr) minmax(240px,1fr)}.ui-polish .p4-home-reading{padding-left:22px}.ui-polish .p4-library .p3-doc-actions{max-width:205px;white-space:normal}}
+@media(max-width:1000px){.ui-polish .p4-library-filter{flex-wrap:wrap}.ui-polish .p4-home-grid{grid-template-columns:1fr}.ui-polish .p4-home-reading{border-left:0;padding:24px 0 0;border-top:1px solid var(--line)}}
+@media(max-width:760px){.ui-polish .p4-library .p3-doc{grid-template-columns:1fr}.ui-polish .p4-library .p3-doc-actions{max-width:none}.ui-polish .p4-library-filter .segment{max-width:100%;flex-wrap:wrap}.ui-polish .p4-discovery h3{font-size:20px}}
+
+/* 已收录期次目录：沿用现有卡片、文字与主题颜色。 */
+.p4-issue-year{margin:28px 0}.p4-issue-year h2{font-size:20px;margin-bottom:14px}
+.p4-issue-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:16px}
+.p4-issue-card{display:flex;flex-direction:column;gap:9px;padding:20px;border:1px solid var(--line,#d8d5ce);border-radius:12px;color:inherit;text-decoration:none;background:var(--surface,transparent)}
+.p4-issue-card:hover,.p4-issue-card:focus-visible{border-color:currentColor}.p4-issue-card:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+.p4-issue-card strong{font-size:18px}.p4-issue-card small{line-height:1.6}.card-latest strong{white-space:normal;line-height:1.65}
+@media(max-width:600px){.p4-issue-grid{grid-template-columns:1fr}}
+
+/* 数据页：沿用工作台纸色、深绿与细线。图表用直接标签保留可读数值。 */
+.p4-analytics{max-width:1320px}.p4-stat-eyebrow{font-size:11px!important;letter-spacing:.19em;color:var(--muted);margin:0 0 12px!important}.p4-analytics .page-head{align-items:end;gap:24px}.p4-analytics .page-head h1{margin-bottom:12px}
+.p4-stat-filters{display:flex;gap:12px;flex-shrink:0}.p4-stat-filters label{display:grid;gap:7px;font-size:12px;color:var(--muted)}.p4-stat-filters select{min-height:44px;min-width:120px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);padding:8px 12px;font:inherit;font-size:14px}
+.p4-stat-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:28px 0 32px;padding:24px 0}.p4-stat-metric{padding:0 24px;border-right:1px solid var(--line);display:grid;gap:8px}.p4-stat-metric:first-child{padding-left:0}.p4-stat-metric:last-child{border:0}.p4-stat-metric>span{font-size:14px;color:var(--muted)}.p4-stat-metric strong{font-size:38px;line-height:1.2;font-weight:500;font-variant-numeric:tabular-nums;letter-spacing:-.03em}.p4-stat-metric small{font-size:12px;color:var(--muted);line-height:1.7}
+.p4-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}.p4-stat-panel{min-width:0;padding:28px;border:1px solid var(--line);border-radius:14px;background:var(--paper)}.p4-stat-heading>span{color:var(--muted);font-size:11px;letter-spacing:.12em}.p4-stat-heading h2{font-size:23px;margin:10px 0}.p4-stat-heading p,.p4-stat-footnote{color:var(--muted);font-size:13px;line-height:1.7;margin:0 0 24px}.p4-stat-bars{list-style:none;padding:0;margin:0;display:grid;gap:16px}.p4-bar-caption{display:flex;justify-content:space-between;align-items:baseline;gap:14px;font-size:14px;margin-bottom:7px}.p4-bar-caption span{overflow-wrap:anywhere}.p4-bar-caption b{font-weight:500;white-space:nowrap;font-variant-numeric:tabular-nums}.p4-bar-caption small{font-size:11px;color:var(--muted)}.p4-bar-track{height:6px;border-radius:4px;background:var(--line);overflow:hidden}.p4-bar-track i{display:block;height:100%;background:var(--accent,#1d5149);border-radius:4px}.p4-field-bars .p4-bar-track{height:12px}.p4-year-bars .p4-bar-track{height:12px}.p4-stat-footnote{margin:24px 0 0}.p4-stat-empty{color:var(--muted);padding:36px 0}.p4-stat-method{margin:28px 0;color:var(--muted);font-size:13px;line-height:1.9}.p4-stat-method summary{cursor:pointer;padding:14px 0;min-height:44px}.p4-stat-filters select:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.p4-update-info{max-width:100%;font-size:13px!important;line-height:1.7!important}.p4-update-info>details{flex-basis:100%;max-width:100%;color:var(--muted)}.p4-update-info summary{cursor:pointer}.p4-update-info details p{overflow-wrap:anywhere}.p4-clue-status{display:inline-block;font-size:11px;padding:2px 7px;border:1px solid var(--line);border-radius:4px;margin-right:8px}.p4-review-items{max-height:340px;overflow:auto;padding-right:12px}
+@media(max-width:1000px){.p4-analytics .page-head{flex-wrap:wrap}.p4-stat-metrics{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:24px}.p4-stat-metric:nth-child(2){border:0}.p4-stat-metric:nth-child(3){padding-left:0}}
+@media(max-width:700px){.p4-stat-grid{grid-template-columns:1fr}.p4-stat-panel{padding:20px}.p4-stat-metric{padding:0 12px}.p4-stat-metric strong{font-size:30px}.p4-stat-filters{flex-wrap:wrap}.p4-stat-filters select{min-width:130px}}
+
+@media(max-width:1000px){.p4-stat-grid{grid-template-columns:1fr}}
+
+.p4-update-info{flex-wrap:wrap;align-items:baseline;row-gap:8px}.p4-update-info>details{width:100%}
+@media(max-width:700px){
+ body:has(.p4-analytics){--nav-width:56px}
+ body:has(.p4-analytics) .sidebar{padding:20px 6px}
+ body:has(.p4-analytics) .brand{padding:0 0 26px;justify-content:center}
+ body:has(.p4-analytics) :is(.brand-copy,.nav-caption,.nav-label,.nav-foot span,.environment){display:none}
+ body:has(.p4-analytics) .nav a{padding:12px;justify-content:center}
+ body:has(.p4-analytics) .nav-foot{padding:16px 0 0}
+ body:has(.p4-analytics) .topbar{padding:0 16px}
+ body:has(.p4-analytics) :is(.prototype-label,[data-action="collapse"]){display:none}
+ .p4-analytics{padding:24px 16px 40px}.p4-analytics .page-head{display:block}
+ .p4-stat-filters{margin-top:18px;flex-shrink:1}.p4-stat-filters label{flex:1;min-width:0}
+ .p4-stat-filters select{min-width:0;width:100%;max-width:100%}
+ .p4-stat-panel{padding:18px}.p4-stat-metric strong{font-size:27px}.p4-stat-metric small{font-size:11px}
+}
+
+.p4-single-year{grid-column:1/-1}
+
+.p4-derived-keywords{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);font-family:var(--sans, sans-serif)}.p4-derived-keywords small,.p4-supplement-source{font-size:13px;color:var(--muted)}.p4-derived-keywords p{display:flex;flex-wrap:wrap;gap:8px}.p4-derived-keywords span{font:13px/1.6 var(--sans,sans-serif);padding:4px 9px;border:1px solid var(--line);border-radius:5px}
+
+/* 异步导航即时反馈，不移动正文或抢走键盘焦点。 */
+#main[aria-busy="true"]::before{content:"正在读取…";position:fixed;top:82px;right:28px;z-index:20;padding:7px 12px;border:1px solid #d4dfd7;border-radius:6px;background:#f4f6ef;color:#1c514a;font-size:13px;pointer-events:none}

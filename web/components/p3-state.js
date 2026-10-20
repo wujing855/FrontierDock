@@ -1,0 +1,1 @@
+export function originFor(storage,id){try{const v=JSON.parse(storage.getItem('frontierdock-origin:'+id)||'null');if(v?.hash?.startsWith('#/')&&!v.hash.startsWith('#/reader/'))return v}catch{}return {hash:'#/reading',y:0,expanded:[]}}
