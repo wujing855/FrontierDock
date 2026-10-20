@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/images/hero.jpg" width="880" alt="FrontierDock 前沿观察站">
+<img src="docs/images/hero.png" width="880" alt="FrontierDock 前沿观察站">
 
 # FrontierDock · 前沿观察站
 
@@ -61,31 +61,31 @@ python3 -m frontierdock init --workspace my-research
 
 截图取自 `--demo` 工作区，期刊、论文、关键词全部虚构。
 
-<img src="docs/images/01-workbench.jpg" width="880" alt="前沿观察站：各刊近期论文、我的待读">
+<img src="docs/images/01-workbench.png" width="880" alt="前沿观察站：各刊近期论文、我的待读">
 
 **前沿观察站**：每本刊先露一篇，右侧是待读清单，点标题直接进摘要页。
 
-<img src="docs/images/02-journals.jpg" width="880" alt="期刊浏览：期刊卡片、收录区间、卷期数">
+<img src="docs/images/02-journals.png" width="880" alt="期刊浏览：期刊卡片、收录区间、卷期数">
 
 **期刊浏览**：每张卡片写明本工作区实际收录了几卷几期、覆盖到哪一年哪一期。空档不假装完整。
 
-<img src="docs/images/03-issues.jpg" width="880" alt="卷期目录：按年列出已收录期号">
+<img src="docs/images/03-issues.png" width="880" alt="卷期目录：按年列出已收录期号">
 
 **卷期目录**：按年份列出已收录的期号，缺哪期就少哪一期，不为了填齐而编造。
 
-<img src="docs/images/04-search.jpg" width="880" alt="论文检索：按题名、DOI、作者、日期筛选">
+<img src="docs/images/04-search.png" width="880" alt="论文检索：按题名、DOI、作者、日期筛选">
 
 **论文检索**：题名、DOI、作者、期刊、日期都能筛，行内直接切换阅读状态。
 
-<img src="docs/images/05-reader.jpg" width="880" alt="摘要阅读：中文译文、可选英文原摘要、提取关键词">
+<img src="docs/images/05-reader.png" width="880" alt="摘要阅读：中文译文、可选英文原摘要、提取关键词">
 
 **摘要阅读**：中文译文在上，点开就是英文原摘要，下面是提取的关键词。米纸、清白、夜读三种阅读主题。
 
-<img src="docs/images/06-reading.jpg" width="880" alt="我的阅读：未读、待读、已读，移除后可还原">
+<img src="docs/images/06-reading.png" width="880" alt="我的阅读：未读、待读、已读，移除后可还原">
 
 **我的阅读**：未读 / 待读 / 已读三态，移除之后还能还原，历史状态单独保留。
 
-<img src="docs/images/07-analytics.jpg" width="880" alt="数据与方法：领域分布、年份覆盖、逐年关键词">
+<img src="docs/images/07-analytics.png" width="880" alt="数据与方法：领域分布、年份覆盖、逐年关键词">
 
 **数据与方法**：领域分布、年份覆盖、逐年高频关键词，统计口径写在卡片下方，不冒充学界热度。
 
