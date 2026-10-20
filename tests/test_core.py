@@ -70,11 +70,11 @@ class CoreTests(unittest.TestCase):
   with self.assertRaises(ValueError):self.w.enrich([{'record_id':'demo:0','source_hash':fingerprint(m['title'],m['abstract']),'model_keywords':['a','b']},{'record_id':'missing'}])
   self.assertFalse(self.w.get('demo:0').get('model_keywords'))
  def test_unknown_issue_remains_unknown(self):
-  self.w.import_records([self.record(year=2024)]);g=next(x for x in views.issues(self.w,self.record()['journal'])if x['year']=='2024');self.assertEqual(g['issue'],'unknown')
+  self.w.import_records([self.record(year=2019)]);g=next(x for x in views.issues(self.w,self.record()['journal'])if x['year']=='2019');self.assertEqual(g['issue'],'unknown')
  def test_dynamic_analytics_year(self):
-  self.w.import_records([self.record(year=2024)]);d=views.analytics(self.w,{'year':'2024'});self.assertEqual(d['total'],1);self.assertIn('2024',d['available_years'])
+  self.w.import_records([self.record(year=2019)]);d=views.analytics(self.w,{'year':'2019'});self.assertEqual(d['total'],1);self.assertIn('2019',d['available_years'])
  def test_original_keywords_count(self):
-  self.w.import_records([self.record(year=2024,keywords=['reproducibility','research'])]);d=views.analytics(self.w,{'year':'2024'});self.assertEqual(d['keyword_sources']['original'],1)
+  self.w.import_records([self.record(year=2019,keywords=['reproducibility','research'])]);d=views.analytics(self.w,{'year':'2019'});self.assertEqual(d['keyword_sources']['original'],1)
  def test_agent_mode_does_not_call_provider(self):
   with patch('frontierdock.workflow.crossref',side_effect=AssertionError('must not call')),patch('frontierdock.workflow.deepseek_search',side_effect=AssertionError('must not call')):
    r=update(self.w);self.assertEqual(r['new'],0);self.assertEqual(r['agent_queue']['status'],'awaiting_agent')

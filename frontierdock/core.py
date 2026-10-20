@@ -3,7 +3,7 @@ from pathlib import Path
 from contextlib import contextmanager,closing
 from datetime import datetime,date,timezone
 from collections import Counter
-import hashlib,json,sqlite3,os,tempfile,re
+import hashlib,json,sqlite3,os,tempfile,re,random
 
 SCHEMA='''CREATE TABLE IF NOT EXISTS papers(id TEXT PRIMARY KEY,doi TEXT UNIQUE,title TEXT NOT NULL,journal TEXT NOT NULL,date TEXT,year INTEGER,data TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS reading(id TEXT PRIMARY KEY,status TEXT,removed INTEGER DEFAULT 0,revision INTEGER DEFAULT 0,visibility_revision INTEGER DEFAULT 0);
@@ -192,6 +192,38 @@ DEMO_JOURNALS=[
  {'name':'Computational Inquiry Review（虚构）','region':'INT','field':'示例计算社会科学','description':'虚构演示期刊，用于展示关键词统计与逐年分布。','publication_frequency':'月刊'},
  {'name':'交叉学科评论（虚构）','region':'CN','field':'示例交叉学科','description':'虚构演示期刊，展示跨学科题录的组织方式。','publication_frequency':'半年刊'},
 ]
+DEMO_TOPICS=[
+ ('人工智能',9,'artificial intelligence'),('大语言模型',9,'large language models'),('AI',8,'AI'),
+ ('智能体',5,'agents'),('机器学习',4,'machine learning'),('多模态',4,'multimodal models'),('检索增强',4,'retrieval augmentation'),
+ ('提示工程',3,'prompt engineering'),('知识图谱',3,'knowledge graphs'),
+ ('文献计量',2,'bibliometrics'),('同行评议',2,'peer review'),('开放获取',2,'open access'),('学术写作',2,'academic writing'),
+ ('可复现性',2,'reproducibility'),('数据治理',2,'data governance'),('语义检索',2,'semantic search'),
+ ('自动摘要',1,'automatic summarisation'),('引用网络',1,'citation networks'),('预印本',1,'preprints'),('计算社会科学',1,'computational social science'),
+ ('数字人文',1,'digital humanities'),('模型评估',1,'model evaluation'),('认知负荷',1,'cognitive load'),('文本挖掘',1,'text mining'),
+ ('科研伦理',1,'research ethics'),('版本追踪',1,'version tracking'),('实验记录',1,'lab notebooks'),
+]
+ISSUE_MONTHS={0:[1,4,7,10],1:[1,3,5,7,9,11],2:list(range(1,13)),3:[3,9]}
+
+def demo_corpus(count=400):
+ """确定性生成虚构题录，让关键词统计有真实的长尾分布，不含任何真实论文。"""
+ rng=random.Random(20261020);words=[t[0] for t in DEMO_TOPICS];weights=[t[1] for t in DEMO_TOPICS];english=[t[2] for t in DEMO_TOPICS]
+ rows=[]
+ for n in range(count):
+  j=rng.choices([0,1,2,3],weights=[18,24,46,12])[0]
+  year=rng.choices([2024,2025,2026],weights=[18,34,48])[0]
+  month=rng.choice(ISSUE_MONTHS[j]);issue=ISSUE_MONTHS[j].index(month)+1
+  picked=list(dict.fromkeys(rng.choices(words,weights=weights,k=6)))[:6]
+  if len(picked)<3:picked=(picked+words[:3])[:3]
+  en=[english[words.index(k)] for k in picked[:2]]
+  if j in (0,2):
+   title=rng.choice([f'A fictional study of {en[0]} and {en[1]} ({n})',f'Notes on {en[0]} in research workflows (fictional {n})',f'Toward {en[0]}: a synthetic record ({n})'])
+   abstract=f'Fictional entry {n} on {en[0]}. The abstract is generated from a fixed template so that this demo can show how a stored original abstract, a translation and extracted keywords relate to each other. It describes no real study and must not be cited.'
+  else:
+   title=rng.choice([f'{picked[0]}与{picked[1]}：虚构研究记录 {n}',f'{picked[0]}视角下的{picked[1]}（虚构示例 {n}）',f'关于{picked[0]}的合成实验笔记 {n}'])
+   abstract=f'这是第 {n} 条虚构题录，主题围绕{picked[0]}与{picked[1]}。摘要由固定模板生成，用来演示原摘要、译文与关键词之间的关系，不对应任何真实研究，不能用于引用。'
+  rows.append({'j':j,'year':year,'month':month,'volume':year-2023,'issue':issue,'title':title,'abstract':abstract,'keywords':picked})
+ return rows
+
 DEMO_RECORDS=[
  {'j':0,'year':2026,'month':1,'volume':1,'issue':1,'title':'A fictional study of research signals','abstract':'This synthetic abstract demonstrates a research discovery workflow: a journal directory, an issue list, a verified abstract and a reading queue. It is not a real publication and must not be cited.','keywords':['研究信号','发现流程','来源校验'],'tt':'关于研究信号的虚构研究','tr':'这个虚构摘要演示研究发现的工作流程：期刊目录、卷期列表、经核对的摘要与阅读队列。它不是真实出版物，不应被引用。'},
  {'j':1,'year':2026,'month':1,'volume':1,'issue':1,'title':'如何构建可追溯的研究记录（虚构示例）','abstract':'此摘要完全虚构，仅用来展示原始摘要、来源链接与阅读状态的页面效果。使用者可以按自己的领域配置期刊、检索方式与维护节奏。','keywords':['可追溯性','研究记录','开放科学']},
@@ -211,21 +243,24 @@ def initialize(path,demo=False):
  root.mkdir(parents=True,exist_ok=True);(root/'.frontierdock-workspace').write_text('frontierdock-v1')
  c=defaults()
  if demo:
-  c['demo']=True;c['project']['field']='虚构跨学科演示';c['project']['years']=[date.today().year-1,date.today().year];c['journals']=DEMO_JOURNALS
+  c['demo']=True;c['project']['field']='虚构跨学科演示';c['project']['years']=[2024,2025,2026];c['journals']=DEMO_JOURNALS
  atomic_json(root/'config.json',c)
  with closing(sqlite3.connect(root/'catalog.sqlite')) as db:db.executescript(SCHEMA)
  w=Workspace(root)
  if demo:
+  rows=DEMO_RECORDS+demo_corpus()
   values=[]
-  for i,d in enumerate(DEMO_RECORDS):
+  for i,d in enumerate(rows):
    value={'record_id':f'demo:{i}','title':d['title'],'journal':c['journals'][d['j']]['name'],'authors':['Example Researcher'],'publication_date':f"{d['year']}-{d['month']:02d}-01",'date_kind':'publisher','year':d['year'],'volume':d['volume'],'issue':d['issue'],'source_url':f'https://example.org/frontierdock/demo/{i}','demo':True}
    if d.get('abstract'):value.update(abstract=d['abstract'],abstract_kind='synthetic_demo')
    values.append(value)
   w.import_records(values)
-  for i,d in enumerate(DEMO_RECORDS):
+  hashes={m['record_id']:fingerprint(m['title'],m.get('abstract') or '') for m in w.records()}
+  enrich=[]
+  for i,d in enumerate(rows):
    if not d.get('abstract'):continue
-   m=w.get(f'demo:{i}')
-   value={'record_id':m['record_id'],'source_hash':fingerprint(m['title'],m['abstract']),'model_keywords':d['keywords'],'provider':'synthetic-demo','model':'fictional-example'}
+   value={'record_id':f'demo:{i}','source_hash':hashes[f'demo:{i}'],'model_keywords':d['keywords'],'provider':'synthetic-demo','model':'fictional-example'}
    if d.get('tr'):value.update(translated_title=d['tt'],abstract_translation=d['tr'])
-   w.enrich([value])
+   enrich.append(value)
+  w.enrich(enrich)
  return w

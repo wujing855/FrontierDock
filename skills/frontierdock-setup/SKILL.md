@@ -17,7 +17,30 @@ Ask a small group of relevant questions, then make useful progress. Do not overw
 - Then ask about discovery. Agent's own search, structured Crossref retrieval and optional DeepSeek are choices. Do not require an API key for Agent mode. Explain that Python cannot automatically call the host Agent's private tools. Scholar tracking can be handled as an Agent research request; this release has no dedicated scholar dashboard or unattended scholar adapter.
 - Ask whether to translate, use this Agent or an API, which target language, and whether keyword extraction is wanted. For free-model selection, first verify current quota and stop-on-exhaustion protection. Use earliest expiry, then highest task quality within that expiry date. Never infer free quota from an HTTP 200 or model catalogue. See `docs/INTEGRATIONS.md` for the optional quota inventory format.
 - Ask about PDF extraction only if relevant. Choose disabled, an existing local MinerU installation, or optional cloud upload. Never install a large dependency or upload a document without the user's choice. This release does not provide full-text annotation.
-- Ask about timezone, journal check intervals, per-run limits, schedule, and meaningful notifications. Default is manual and quiet unless actionable. External scheduling needs an actual scheduler and, for Agent mode, an actual Agent runner. Obtain authorization for that setup, then verify it rather than merely promising it exists.
+- Ask about timezone, journal check intervals, per-run limits, schedule, and meaningful notifications. Default is manual and quiet unless actionable. External scheduling needs an actual scheduler and, for Agent mode, an actual Agent runner. Obtain authorization for that setup, then verify it rather than merely promising it exists. The twice-daily check-up below is the concrete option to offer here.
+
+## Offer a twice-daily check-up
+
+Most people using this will not be familiar with schedulers, cron or APIs. After the first successful run, offer a simple routine instead of a technical description: twice a day, at two fixed times, you look for new issues and check that the workbench itself is healthy.
+
+Ask rather than assume, and phrase it in everyday words. For example: "要不要我每天早晚各看一次？早上 9 点看看有没有新一期，晚上 9 点再补一次，顺便查一下工作台有没有出毛病。" Accept whatever they choose, including once a day, weekly, or manual only.
+
+What one check-up does:
+
+- Look for new issues of their journals: `plan`, then a bounded `update` within the configured per-run limits.
+- Fill missing translations and keywords within the same limits: `maintain`.
+- Check the workbench itself: run `doctor`, read the local run reports and state file, and notice the things a user would feel as "it stopped working" (a failed source, a stuck run lock, a full disk, a database that cannot be opened).
+- Report back in a few sentences: what is new, what needs their decision, what is broken.
+
+Rules for this section:
+
+- Two runs a day is an offer, not a default. Never install a scheduler, launch agent, systemd timer or Task Scheduler job without explicit authorization.
+- Do not claim the routine exists because a config file was written. Verify the actual job (list the crontab entry, `launchctl list`, `systemctl --user list-timers`, or the Task Scheduler query) and tell the user plainly what happens when the computer is asleep or off.
+- Agent mode still needs something to execute `requests/agent_tasks.json`. A timer alone only writes the queue.
+- Keep per-run limits small so a twice-daily routine stays quiet and cheap. Do not add paid calls without the user's choice.
+- Write the report the way a person would say it: "《期刊名》新到 2 篇，摘要都补齐了", not "update returned new=2". If something is broken, describe what they would notice, then offer to fix it locally before mentioning any external report.
+- Only interrupt when there is something actionable: papers they asked to track, a failure that needs a decision, an identity conflict to review. Stay silent otherwise.
+- Keep a short local log of each run in the workspace, and never send workspace content, logs or diagnostics to an external service or tracker.
 
 ## Configure and verify
 

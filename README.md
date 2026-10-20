@@ -51,7 +51,7 @@ python3 -m frontierdock init --workspace workspace --demo
 python3 -m frontierdock serve --workspace workspace
 ```
 
-浏览器打开 **http://127.0.0.1:8876** 。演示里的四本期刊和十篇论文都是虚构的，只能看效果，不能引用。要装自己的资料，另建一个空白工作区即可。
+浏览器打开 **http://127.0.0.1:8876** 。演示里的四本期刊和四百多条题录全是虚构的，只能看效果，不能引用。要装自己的资料，另建一个空白工作区即可。
 
 ```sh
 python3 -m frontierdock init --workspace my-research

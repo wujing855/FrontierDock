@@ -47,7 +47,7 @@ python3 -m frontierdock init --workspace workspace --demo
 python3 -m frontierdock serve --workspace workspace
 ```
 
-Open **http://127.0.0.1:8876** . The four demo journals and ten demo papers are fictional and must not be cited. For real research, create a separate empty workspace:
+Open **http://127.0.0.1:8876** . The four demo journals and the 400+ records in them are fictional and must not be cited. For real research, create a separate empty workspace:
 
 ```sh
 python3 -m frontierdock init --workspace my-research

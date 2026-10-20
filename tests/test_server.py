@@ -26,7 +26,7 @@ class ServerTests(unittest.TestCase):
  def test_write_persists_and_invalidates_catalog_cache(self):
   self.req('/api/v1/catalog');h={'Content-Type':'application/json','X-FrontierDock':'1','Origin':f'http://127.0.0.1:{self.port}'};b=json.dumps({'record_id':'demo:0','state':'to_read','revision':0})
   self.assertEqual(self.req('/api/v1/reading',b,h)[0],200);self.assertEqual(self.req('/api/v1/reading',b,h)[0],409)
-  _,body=self.req('/api/v1/catalog');row=next(x for x in json.loads(body)['items']if x['record_id']=='demo:0');self.assertEqual(row['reading']['status'],'to_read')
+  _,body=self.req('/api/v1/catalog?q=research%20signals');row=next(x for x in json.loads(body)['items']if x['record_id']=='demo:0');self.assertEqual(row['reading']['status'],'to_read')
  def test_invalid_body_and_unknown_endpoint(self):
   h={'Content-Type':'application/json','X-FrontierDock':'1'};self.assertEqual(self.req('/api/v1/reading','[]',h)[0],400);self.assertEqual(self.req('/api/v1/unknown')[0],404)
 
