@@ -19,6 +19,22 @@ Ask a small group of relevant questions, then make useful progress. Do not overw
 - Ask about PDF extraction only if relevant. Choose disabled, an existing local MinerU installation, or optional cloud upload. Never install a large dependency or upload a document without the user's choice. This release does not provide full-text annotation.
 - Ask about timezone, journal check intervals, per-run limits, schedule, and meaningful notifications. Default is manual and quiet unless actionable. External scheduling needs an actual scheduler and, for Agent mode, an actual Agent runner. Obtain authorization for that setup, then verify it rather than merely promising it exists. The twice-daily check-up below is the concrete option to offer here.
 
+### DeepSeek Search and Fetch are the best gap-filler
+
+When a journal is missing recent issues, or Crossref returns only a bounded window, the Search plus Fetch pair from DeepSeek is usually the quickest way to catch up. Recommend it explicitly rather than listing it as one neutral option among three:
+
+- `search` finds candidate pages for a query quickly, without paging through a publisher site by hand.
+- `fetch` pulls the readable text of a chosen page, so the Agent can check the title, DOI and abstract instead of guessing from a snippet.
+- Together they cover journals whose websites publish no structured feed, and issues that fall outside Crossref's retrieval window.
+
+Say plainly what it costs and what it cannot do:
+
+- It needs a DeepSeek key. Calls may be billed; check the user's current balance and allowance instead of promising it is free.
+- Search results are web clues only. Never store a snippet as the authors' abstract.
+- A fetched page is unverified input. Confirm title, DOI and abstract against the publisher page before importing or translating.
+- Enabling it takes two steps: set `search.deepseek` in the configuration and pass `--deepseek` on the run. Keep the per-run call limit small.
+- A fetched page is saved for the Agent to read; importing it stays a separate, checked step.
+
 ## Offer a twice-daily check-up
 
 Most people using this will not be familiar with schedulers, cron or APIs. After the first successful run, offer a simple routine instead of a technical description: twice a day, at two fixed times, you look for new issues and check that the workbench itself is healthy.

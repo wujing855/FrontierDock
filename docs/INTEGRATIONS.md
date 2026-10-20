@@ -6,7 +6,7 @@ Basic browsing, import, enrichment, reading state, quality reports and the Agent
 |---|---|---|
 | Agent search / translation | Structured task queue plus validated import/enrichment | The user's Agent must have the necessary tools and execute the queue |
 | Crossref | Verified-ISSN retrieval, bounded window, deposited abstract parsing | One public journal request verified during preparation; each user’s journals still need live completeness checks |
-| DeepSeek | Opt-in Search clues and Fetch page storage | User account, balance, access and page parsing; Search never auto-imports papers |
+| DeepSeek | Opt-in Search clues and Fetch page storage; the usual gap-filler when Crossref's window or a publisher feed falls short | User account, balance, access and page parsing; Search never auto-imports papers |
 | Compatible model API | Per-record original abstract translation and keyword extraction, source fingerprint, per-run request limit | User-selected endpoint, model support, translation quality, pricing/quota |
 | MinerU local | Explicit command-array runner, no shell, local result folder | An existing compatible MinerU installation |
 | MinerU cloud | Explicit PDF upload opt-in, task submission, separate status/download command | User token, account limits, network, actual PDF output quality |
