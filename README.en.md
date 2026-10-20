@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/images/hero.png" width="880" alt="FrontierDock interface">
+<img src="docs/images/hero-2x.jpg" width="100%" alt="FrontierDock interface">
 
 # FrontierDock
 
@@ -57,31 +57,31 @@ python3 -m frontierdock init --workspace my-research
 
 Captured from the `--demo` workspace; journals, papers and keywords are all fictional.
 
-<img src="docs/images/01-workbench.png" width="880" alt="Workbench: recent papers per journal and the reading queue">
+<img src="docs/images/01-workbench-2x.png" width="100%" alt="Workbench: recent papers per journal and the reading queue">
 
 **Workbench**: one recent paper per journal, plus your reading queue.
 
-<img src="docs/images/02-journals.png" width="880" alt="Journal overview: cards with stored issue coverage">
+<img src="docs/images/02-journals-2x.png" width="100%" alt="Journal overview: cards with stored issue coverage">
 
 **Journals**: each card states how many issues this workspace actually holds, and which year and issue it reaches.
 
-<img src="docs/images/03-issues.png" width="880" alt="Issue directory grouped by year">
+<img src="docs/images/03-issues-2x.png" width="100%" alt="Issue directory grouped by year">
 
 **Issue directory**: issues grouped by year. Missing issues stay missing.
 
-<img src="docs/images/04-search.png" width="880" alt="Paper search with title, DOI, author and date filters">
+<img src="docs/images/04-search-2x.png" width="100%" alt="Paper search with title, DOI, author and date filters">
 
 **Search**: filter by title, DOI, author, journal and date; change reading state in place.
 
-<img src="docs/images/05-reader.png" width="880" alt="Reader with translation, original abstract and extracted keywords">
+<img src="docs/images/05-reader-2x.png" width="100%" alt="Reader with translation, original abstract and extracted keywords">
 
 **Reader**: translation on top, the original abstract one click away, extracted keywords below. Rice-paper, plain and night reading themes.
 
-<img src="docs/images/06-reading.png" width="880" alt="Reading list with unread, to-read and completed states">
+<img src="docs/images/06-reading-2x.png" width="100%" alt="Reading list with unread, to-read and completed states">
 
 **Reading list**: unread, to-read and completed, with removal and restore.
 
-<img src="docs/images/07-analytics.png" width="880" alt="Collection insights: field split, yearly coverage, keywords by year">
+<img src="docs/images/07-analytics-2x.png" width="100%" alt="Collection insights: field split, yearly coverage, keywords by year">
 
 **Insights**: field split, yearly coverage and per-year keywords, each card stating what it actually counts.
 
