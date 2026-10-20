@@ -85,10 +85,11 @@ class CoreTests(unittest.TestCase):
    with self.assertRaises(ValueError):update(self.w)
   self.assertFalse((self.w.root/'.run.lock').exists())
  def test_request_limit_and_existing_data(self):
+  baseline=len(self.w.records())
   self.w.config['search']['mode']='structured';self.w.config['journals'][0]['issns']=['1234-567X'];self.w.config['limits']['max_journals_per_run']=1
   with patch('frontierdock.workflow.crossref',return_value=([self.record()],['partial']))as provider:
    report=update(self.w);self.assertEqual(report['checked_journals'],1);self.assertEqual(report['new'],1);self.assertEqual(provider.call_count,1)
-  self.assertEqual(len(self.w.records()),3)
+  self.assertEqual(len(self.w.records()),baseline+1)
  def test_maintenance_budget(self):
   self.w.config['translation'].update(mode='api',model='test-model');self.w.config['limits']['max_model_calls_per_run']=1
   def answer(m,c):return {'record_id':m['record_id'],'source_hash':fingerprint(m['title'],m['abstract']),'model_keywords':['test','example']}

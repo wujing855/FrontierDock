@@ -4,7 +4,7 @@ from pathlib import Path
 import argparse,hashlib,json,re,zipfile,sys
 
 ROOT=Path(__file__).resolve().parent.parent
-TOP={'README.md','README.zh-CN.md','LICENSE','THIRD_PARTY_NOTICES.md','CONTRIBUTING.md','SECURITY.md','AGENTS.md','.gitignore','package.json','pyproject.toml'}
+TOP={'README.md','README.en.md','LICENSE','THIRD_PARTY_NOTICES.md','CONTRIBUTING.md','SECURITY.md','AGENTS.md','.gitignore','package.json','pyproject.toml'}
 DIRS={'frontierdock','web','docs','skills','tests','scripts','.github','examples'}
 EXT={'.py','.js','.mjs','.json','.html','.css','.svg','.woff2','.md','.yaml','.yml','.toml','.txt','.png','.jpg','.jpeg'}
 PATTERNS=[('possible_secret',re.compile(r'(?i)\bsk-[a-z0-9_-]{24,}\b|\bAKIA[A-Z0-9]{16}\b|-----BEGIN (?:RSA |OPENSSH |EC )?PRIVATE KEY-----')),('private_machine_path',re.compile(r'(?:/Users|/home)/[^/\s"\x27<>]+/')),('embedded_bearer',re.compile(r'(?i)Bearer\s+[a-z0-9_-]{24,}'))]

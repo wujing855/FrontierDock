@@ -186,20 +186,46 @@ def validate_record(value,journals):
  meta=next(j for j in journals if j['name']==m['journal']);m['region']=meta.get('region','INT');m['authors']=m.get('authors',[]);m['imported_at']=now()
  return m
 
+DEMO_JOURNALS=[
+ {'name':'Frontier Methods — Fictional Journal','region':'INT','field':'示例研究方法','description':'虚构演示期刊，用来展示卷期目录、原摘要与译文阅读。不用于学术引用。','publication_frequency':'季刊'},
+ {'name':'开放研究观察（虚构）','region':'CN','field':'示例开放科学','description':'虚构演示期刊，展示中文题录与阅读状态的页面效果。可以替换为任何学科的期刊。','publication_frequency':'双月刊'},
+ {'name':'Computational Inquiry Review（虚构）','region':'INT','field':'示例计算社会科学','description':'虚构演示期刊，用于展示关键词统计与逐年分布。','publication_frequency':'月刊'},
+ {'name':'交叉学科评论（虚构）','region':'CN','field':'示例交叉学科','description':'虚构演示期刊，展示跨学科题录的组织方式。','publication_frequency':'半年刊'},
+]
+DEMO_RECORDS=[
+ {'j':0,'year':2026,'month':1,'volume':1,'issue':1,'title':'A fictional study of research signals','abstract':'This synthetic abstract demonstrates a research discovery workflow: a journal directory, an issue list, a verified abstract and a reading queue. It is not a real publication and must not be cited.','keywords':['研究信号','发现流程','来源校验'],'tt':'关于研究信号的虚构研究','tr':'这个虚构摘要演示研究发现的工作流程：期刊目录、卷期列表、经核对的摘要与阅读队列。它不是真实出版物，不应被引用。'},
+ {'j':1,'year':2026,'month':1,'volume':1,'issue':1,'title':'如何构建可追溯的研究记录（虚构示例）','abstract':'此摘要完全虚构，仅用来展示原始摘要、来源链接与阅读状态的页面效果。使用者可以按自己的领域配置期刊、检索方式与维护节奏。','keywords':['可追溯性','研究记录','开放科学']},
+ {'j':2,'year':2026,'month':3,'volume':1,'issue':3,'title':'Agent-assisted literature screening: a fictional benchmark','abstract':'A fictional benchmark asks whether an Agent can separate verified abstracts from search snippets. Every item in this demo is invented; the numbers are illustrative and were never measured on a real corpus.','keywords':['文献筛选','智能体','基准测试'],'tt':'智能体辅助文献筛选：一个虚构基准','tr':'这个虚构基准考察 Agent 能否把经核对的摘要与检索片段区分开。演示中的每一项都是编造的，数字仅作示意，从未在真实语料上测量。'},
+ {'j':3,'year':2025,'month':11,'volume':2,'issue':2,'title':'跨学科阅读清单的组织方式（虚构示例）','abstract':'虚构的跨学科清单示例：同一批题录按领域、年份与关键词分别归类，阅读状态独立保存，移除之后仍可还原。','keywords':['阅读清单','跨学科','知识组织']},
+ {'j':0,'year':2026,'month':4,'volume':1,'issue':2,'title':'Provenance labels for machine-translated abstracts','abstract':'Fictional note on provenance: a translation carries the fingerprint of the title and abstract it came from, and stale derived text is hidden instead of shown silently.','keywords':['来源标注','机器翻译','摘要'],'tt':'机器翻译摘要的来源标注','tr':'关于来源标注的虚构说明：译文携带来源题名与摘要的指纹，来源变更后旧译文会被隐藏，不会悄悄展示。'},
+ {'j':2,'year':2026,'month':2,'volume':1,'issue':2,'title':'Keyword drift in a synthetic corpus','abstract':'A synthetic corpus shows how extracted keywords move across two publication years. The vocabulary here is deliberately invented so that no real research trend is implied.','keywords':['关键词漂移','语料分析','逐年统计'],'tt':'合成语料中的关键词漂移','tr':'一个合成语料展示提取关键词在两个出版年份之间的变化。这里的词表是刻意编造的，不暗示任何真实研究趋势。'},
+ {'j':1,'year':2025,'month':7,'volume':1,'issue':6,'title':'开放获取期刊的目录核对流程（虚构示例）','abstract':'虚构流程说明：库存空档不等于出版空档，需要对照出版方目录逐期核对；核对不了的期号保持未知，不为了填齐而补写。','keywords':['目录核对','开放获取','期刊管理']},
+ {'j':2,'year':2025,'month':5,'volume':1,'issue':1,'title':'Reading queues as a research instrument','keywords':['阅读队列','研究习惯','工作流']},
+ {'j':3,'year':2025,'month':3,'volume':2,'issue':1,'title':'Peer review metadata: a fictional audit','abstract':'A fictional audit of peer review metadata: what is recorded, what is missing and what must stay unknown. Nothing in this entry describes a real journal or a real review.','keywords':['同行评议','元数据','审计'],'tt':'同行评议元数据：一次虚构审计','tr':'一次对同行评议元数据的虚构审计：记录了什么、缺了什么、哪些必须保持未知。这一条不描述任何真实期刊或真实评审。'},
+ {'j':0,'year':2025,'month':9,'volume':1,'issue':4,'title':'Issue coverage gaps in local catalogues','abstract':'A fictional account of coverage gaps: local stock never implies a complete issue or a complete year, and partial retrieval stays visibly partial in every view.','keywords':['卷期覆盖','本地目录','缺口记录'],'tt':'本地目录中的卷期缺口','tr':'关于卷期缺口的虚构说明：本地库存从不代表整期或整年完整，任何页面上，部分检索都保持可见的“部分”。'},
+]
+
 def initialize(path,demo=False):
  root=Path(path).expanduser().resolve()
  if root.exists() and any(root.iterdir()):raise ValueError('init_requires_empty_directory; existing files preserved')
  root.mkdir(parents=True,exist_ok=True);(root/'.frontierdock-workspace').write_text('frontierdock-v1')
  c=defaults()
  if demo:
-  c['demo']=True;c['project']['field']='虚构跨学科演示';c['journals']=[{'name':'Frontier Methods — Fictional Journal','region':'INT','field':'示例研究方法','description':'虚构演示期刊，不用于学术引用。'},{'name':'开放研究观察（虚构）','region':'CN','field':'示例开放科学','description':'可替换为任何学科的期刊。'}]
+  c['demo']=True;c['project']['field']='虚构跨学科演示';c['project']['years']=[date.today().year-1,date.today().year];c['journals']=DEMO_JOURNALS
  atomic_json(root/'config.json',c)
  with closing(sqlite3.connect(root/'catalog.sqlite')) as db:db.executescript(SCHEMA)
  w=Workspace(root)
  if demo:
-  w.import_records([{'record_id':f'demo:{i}','title':t,'journal':c['journals'][i%2]['name'],'authors':['Example Researcher'],'publication_date':f'{date.today().year}-01-0{i+1}','date_kind':'publisher','year':date.today().year,'volume':1,'issue':1,'source_url':f'https://example.org/frontierdock/demo/{i}','abstract':a,'abstract_kind':'synthetic_demo','demo':True}for i,(t,a) in enumerate([('A fictional study of research signals','This synthetic abstract demonstrates a research discovery workflow. It is not a real publication and must not be cited.'),('如何构建可追溯的研究记录（虚构示例）','此摘要完全虚构，仅展示原始摘要、来源与阅读状态的页面效果。用户可以按自己的领域配置期刊与研究流程。')])])
-  for m in w.records():
-   value={'record_id':m['record_id'],'source_hash':fingerprint(m['title'],m['abstract']),'model_keywords':['虚构演示','研究流程','来源记录'] if m['region']=='INT'else['开放科学','可追溯性','资料管理'],'provider':'synthetic-demo','model':'fictional-example'}
-   if m['region']=='INT':value.update(translated_title='关于研究信号的虚构研究',abstract_translation='这个虚构摘要演示研究发现的工作流程。它不是真实出版物，不应被引用。')
+  values=[]
+  for i,d in enumerate(DEMO_RECORDS):
+   value={'record_id':f'demo:{i}','title':d['title'],'journal':c['journals'][d['j']]['name'],'authors':['Example Researcher'],'publication_date':f"{d['year']}-{d['month']:02d}-01",'date_kind':'publisher','year':d['year'],'volume':d['volume'],'issue':d['issue'],'source_url':f'https://example.org/frontierdock/demo/{i}','demo':True}
+   if d.get('abstract'):value.update(abstract=d['abstract'],abstract_kind='synthetic_demo')
+   values.append(value)
+  w.import_records(values)
+  for i,d in enumerate(DEMO_RECORDS):
+   if not d.get('abstract'):continue
+   m=w.get(f'demo:{i}')
+   value={'record_id':m['record_id'],'source_hash':fingerprint(m['title'],m['abstract']),'model_keywords':d['keywords'],'provider':'synthetic-demo','model':'fictional-example'}
+   if d.get('tr'):value.update(translated_title=d['tt'],abstract_translation=d['tr'])
    w.enrich([value])
  return w
